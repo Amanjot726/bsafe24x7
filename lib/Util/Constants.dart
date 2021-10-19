@@ -3,9 +3,8 @@ import 'package:flutter/cupertino.dart';
 
 class Util {
 
-  static String App_Name = "B SAFE 24X7";
-  static String Logo = "bsafe.png";
+  static String Logo = "BSAFE.png";
   static Color color = Color.fromARGB(255, 255, 96, 125);
-
+  static String APP_NAME = "B-Safe24X7";
 }
 

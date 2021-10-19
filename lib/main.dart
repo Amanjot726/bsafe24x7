@@ -2,7 +2,8 @@ import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/Login.dart';
-import 'package:bsafe24x7/Auth/Signup.dart';
+import 'package:bsafe24x7/Auth/Register.dart';
+import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
 
 import 'Util/Constants.dart';
 
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown
     ]);
     return MaterialApp(
-      title: Util.App_Name,
+
+      title: "BSafe-24x7",
+
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -38,7 +41,14 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData.light().copyWith(accentColor: Colors.green),
       debugShowCheckedModeBanner: false,
       routes: {
-        "/": (context) => SplashPage(),
+
+        // "/": (context) => SplashPage(),
+        // "/home": (context) => HomePage(),
+        // "/ad": (context) => Profile_UI(),
+        // "/settings": (context) => SettingsPage(),
+        // "/task": (context) => Tasks_page(),
+        // "/john_jack": (context) => Input_Bricks_Page(),
+        // "/": (context) => RestaurantSplashPage(),
         "/login": (context) => LoginPage(),
         //"/register": (context) => RegisterPage(),
 

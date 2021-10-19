@@ -1,16 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:bsafe24x7/Util/Constants.dart';
+// import 'package:first_app/Model/user.dart';
+import 'package:bsafe24x7/util/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 
+FocusNode _Name_focus_node = new FocusNode();
 FocusNode _Email_focus_node = new FocusNode();
 FocusNode _Password_focus_node = new FocusNode();
 FocusNode _Button_focus_node = new FocusNode();
+
+TextEditingController NameController = new TextEditingController();
 TextEditingController loginIDController = new TextEditingController();
 TextEditingController PasswordController = new TextEditingController();
-bool progressIndicator = false;
+
+final _FormKey = GlobalKey<FormState>();
+
+bool showLoader = false;
+
 
 class Show_Snackbar{
   String message;
@@ -24,77 +33,68 @@ class Show_Snackbar{
   }
 }
 
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
-  void authenticateUser(BuildContext context) async{
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: loginIDController.text.trim(),
-          password: PasswordController.text.trim()
-      );
+  // void RegisterUser(BuildContext context) async{
+  //   try {
+  //     UserCredential userCredential = await FirebaseAuth.instance.verifyPhoneNumber(phoneNumber: phoneNumber, verificationCompleted: verificationCompleted, verificationFailed: verificationFailed, codeSent: codeSent, codeAutoRetrievalTimeout: codeAutoRetrievalTimeout)
+  //
+  //     print("userCredential = ${userCredential}");
+  //
+  //     print("User ID is:"+userCredential.user!.uid.toString());
+  //
+  //     if(userCredential.user!.uid.toString().isNotEmpty){
+  //       AppUser user = AppUser(uid:userCredential.user!.uid, name:NameController.text.trim(), email:loginIDController.text.trim(), Profile_pic: "", isAdmin: false, cart: {}, address: {}, Phone_no: '');
+  //       var dataToSave = user.toMap();
+  //       USERS_COLLECTION.doc(userCredential.user!.uid).set(dataToSave).then((value) {get_data();Navigator.pushReplacementNamed(context, "/Restaurant_home");});
+  //       Future.delayed(Duration(milliseconds: 500), (){
+  //         setState(() {
+  //           showLoader=false;
+  //           NameController.clear();
+  //           loginIDController.clear();
+  //           PasswordController.clear();
+  //           _FormKey.currentState!.reset();
+  //         });
+  //       });
+  //     }
+  //     else{
+  //       // Registration Failed
+  //       setState(() {
+  //         showLoader=false;
+  //       });
+  //     }
+  //
+  //
+  //   } on FirebaseAuthException catch (e) {
+  //
+  //     if (e.code == 'email-already-in-use') {
+  //       print('This email address "${loginIDController.text}" is already in use by another account');
+  //       setState(() {
+  //         showLoader=false;
+  //       });
+  //       Show_Snackbar(context: context,message: "Account already exist, Please Login!");
+  //     }
+  //     else if (e.code == 'error-invalid-email') {
+  //       print('Email is invalid');
+  //       setState(() {
+  //         showLoader=false;
+  //       });
+  //       Show_Snackbar(context: context,message: "Email is invalid");
+  //     }
+  //     else{
+  //       // print(e.message);
+  //       print('Failed with error code: ${e.code}');
+  //       Show_Snackbar(context: context,message: e.code.toString());
+  //     }
+  //   }
+  // }
 
-      print("User ID is:"+userCredential.user!.uid.toString());
-
-      if(userCredential.user!.uid.toString().isNotEmpty){
-
-        //await get_data();
-
-        setState(() {
-          loginIDController.text = "";
-          PasswordController.text = "";
-          _FormKey.currentState!.reset();
-        });
-        Future.delayed(
-            Duration(milliseconds: 500), (){
-          Navigator.pushReplacementNamed(context, "/Restaurant_home");
-          setState(() {
-            progressIndicator = false;
-          });
-        }
-        );
-      }else{
-        setState(() {
-          loginIDController.text = "";
-          PasswordController.text = "";
-          _FormKey.currentState!.reset();
-          progressIndicator = false;
-        });
-        Show_Snackbar(context: context,message: "Login Failed");
-      }
-
-
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Show_Snackbar(context: context,message: "No user found for this email");
-        print('No user found for this email.');
-      }
-      else if (e.code == 'wrong-password') {
-        Show_Snackbar(context: context,message: "Login Failed! Wrong password");
-        print('Wrong password provided for that user.');
-      }
-      else{
-        // print(e.message);
-        print('Failed with error code: ${e.code}');
-        Show_Snackbar(context: context,message: e.code.toString());
-      }
-      setState(() {
-        loginIDController.text = "";
-        PasswordController.text = "";
-        _FormKey.currentState!.reset();
-        progressIndicator = false;
-      });
-    }
-  }
-
-
-  final _FormKey = GlobalKey<FormState>();
 
 
   @override
@@ -102,10 +102,12 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
         body: GestureDetector(
           onTap: (){
-            _Email_focus_node.unfocus();
-            _Password_focus_node.unfocus();
-            _Button_focus_node.unfocus();
-            FocusScope.of(context).requestFocus(new FocusNode());
+            setState(() {
+              _Name_focus_node.unfocus();
+              _Email_focus_node.unfocus();
+              _Password_focus_node.unfocus();
+              FocusScope.of(context).requestFocus(new FocusNode());
+            });
           },
           child: Stack(
             children: [
@@ -154,10 +156,8 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               SizedBox(
-                // 640 --> redmi 2
-                // 872 --> redmi note 9 pro
                 height: (MediaQuery.of(context).size.height<680) ?
-                MediaQuery.of(context).size.height/2-((MediaQuery.of(context).size.height/2)/1.55)
+                MediaQuery.of(context).size.height/2-((MediaQuery.of(context).size.height/2)/1.5)
                     :
                 MediaQuery.of(context).size.height/2-((MediaQuery.of(context).size.height/2)/1.8),
                 width: MediaQuery.of(context).size.width,
@@ -165,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("Login",
+                    Text("Register",
                       style: TextStyle(
                         fontSize: 38,
                         color: Color.fromARGB(243, 19, 127, 39),
@@ -193,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: SingleChildScrollView(
                         physics: BouncingScrollPhysics(),
                         child: Container(
-                          // height: MediaQuery.of(context).size.height/2.5,
+                          // height: MediaQuery.of(context).size.height/1.95,
                           width: MediaQuery.of(context).size.width/1.2,
                           padding: EdgeInsets.all(20),
                           child: Form(
@@ -202,7 +202,67 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(height: 8,),
+                                SizedBox(height: 6,),
+                                TextFormField(
+                                  onTap: (){
+                                    setState(() {
+                                      _Password_focus_node.unfocus();
+                                      _Email_focus_node.unfocus();
+                                      _Button_focus_node.unfocus();
+                                      FocusScope.of(context).requestFocus(_Name_focus_node);
+                                    });
+                                  },
+                                  focusNode: _Name_focus_node,
+                                  controller: NameController,
+                                  enabled: true,
+                                  autofocus: false,
+                                  textCapitalization: TextCapitalization.words,
+                                  cursorHeight: 20,
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  keyboardType: TextInputType.name,
+                                  // cursorColor: Colors.green,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Name is required. Please Enter.';
+                                    } else if (value.trim().length == 0) {
+                                      return 'Name is required. Please Enter.';
+                                    }
+                                    return null;
+                                  },
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.blueGrey
+                                  ),
+                                  decoration: InputDecoration(
+                                    // filled: true,
+                                    // alignLabelWithHint: true,
+                                    labelText: "Name",
+                                    labelStyle: TextStyle(
+                                      fontWeight: _Name_focus_node.hasPrimaryFocus? FontWeight.bold : FontWeight.normal,
+                                      // color: _Name_focus_node.hasPrimaryFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black54
+                                      // color: Colors.grey
+                                    ),
+                                    hintText: 'John',
+                                    hintStyle: TextStyle(
+                                        color: Colors.grey
+                                    ),
+                                    isDense: true,
+                                    prefixIcon: Icon(Icons.person,size: 22,color: _Email_focus_node.hasFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black45),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      gapPadding: 4,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(
+                                            color: Color.fromARGB(235, 60, 191, 84),
+                                            width: 1.5
+                                        )
+                                    ),
+                                  ),
+
+                                ),
+                                SizedBox(height: 10,),
                                 TextFormField(
                                   onTap: (){
                                     setState(() {
@@ -212,16 +272,16 @@ class _LoginPageState extends State<LoginPage> {
                                   },
                                   focusNode: _Email_focus_node,
                                   controller: loginIDController,
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
                                   enabled: true,
                                   autofocus: false,
                                   keyboardType: TextInputType.emailAddress,
                                   cursorColor: Colors.green,
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return 'Login ID is required. Please Enter.';
+                                      return 'Email ID is required. Please Enter.';
                                     } else if (value.trim().length == 0) {
-                                      return 'Login ID is required. Please Enter.';
+                                      return 'Email ID is required. Please Enter.';
                                     }
                                     return null;
                                   },
@@ -258,53 +318,43 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
 
                                 ),
-                                SizedBox(height: 12,),
+                                SizedBox(height: 10,),
                                 Custom_TextField(),
-                                SizedBox(height: 20,),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    progressIndicator==true?
-                                    CircularProgressIndicator()
-                                        :
-                                    InkWell(
-                                        focusNode: _Button_focus_node,
-                                        borderRadius: BorderRadius.circular(10),
-                                        onTap: (){
-                                          // Show_Snackbar(context: context, message: "Height = "+MediaQuery.of(context).size.height.toString());
-                                          _Password_focus_node.unfocus();
-                                          _Email_focus_node.unfocus();
-                                          FocusScope.of(context).requestFocus(_Button_focus_node);
-                                          if (_FormKey.currentState!.validate()) {
-                                            setState(() {
-                                              progressIndicator = true;
-                                            });
-                                            authenticateUser(context);
-                                          }
-                                        },
-                                        enableFeedback: true,
-                                        canRequestFocus: true,
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 30,vertical: 11),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              // color: Color.fromARGB(97, 32, 194, 53)
-                                              color: Color.fromARGB(107, 0, 208, 38),
-                                              border: Border.all(color: Colors.black38),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Color.fromARGB(97, 29, 144, 58),
-                                                  blurRadius: 8.0,
-                                                  spreadRadius: 3.0,
-                                                ),
-                                              ]
-                                          ),
-                                          child: Text("Login",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.bold,fontSize: 15),),
-                                        )
-                                    ),
-                                  ],
+                                SizedBox(height: 25,),
+                                showLoader ? Center(child: CircularProgressIndicator())
+                                    :
+                                InkWell(
+                                    focusNode: _Button_focus_node,
+                                    borderRadius: BorderRadius.circular(10),
+                                    onTap: (){
+                                      _Password_focus_node.unfocus();
+                                      _Email_focus_node.unfocus();
+                                      FocusScope.of(context).requestFocus(_Button_focus_node);
+                                      if (_FormKey.currentState!.validate()) {
+                                        showLoader = true;
+                                        // RegisterUser(context);
+                                      }
+                                    },
+                                    enableFeedback: true,
+                                    canRequestFocus: true,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 30,vertical: 11),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          // color: Color.fromARGB(97, 32, 194, 53)
+                                          color: Color.fromARGB(107, 0, 208, 38),
+                                          border: Border.all(color: Colors.black38),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color.fromARGB(97, 29, 144, 58),
+                                              blurRadius: 8.0,
+                                              spreadRadius: 3.0,
+                                            ),
+                                          ]
+                                      ),
+                                      child: Text("Register",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.bold,fontSize: 15),),
+                                    )
                                 ),
-
                                 SizedBox(height: 14),
                                 Text("By Logging in You accept our Terms & Conditions", style: TextStyle(
                                     fontSize: 12.0, color: Colors.grey, fontWeight: FontWeight.w300),
@@ -334,13 +384,13 @@ class _LoginPageState extends State<LoginPage> {
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 12),
                                 InkWell(
                                   onTap: (){
-                                    Navigator.pushReplacementNamed(context, "/register");
+                                    Navigator.pushReplacementNamed(context, "/login");
                                   },
                                   child: Text(
-                                    'New User? Register Here',
+                                    'Already a User? Login Here',
                                     style: TextStyle(
                                       fontSize: 18.0, color: Colors.green, fontWeight: FontWeight.w500,
                                     ),
@@ -400,7 +450,9 @@ class _Custom_TextFieldState extends State<Custom_TextField> {
     return TextFormField(
       onTap: (){
         setState(() {
+          _Name_focus_node.unfocus();
           _Email_focus_node.unfocus();
+          _Button_focus_node.unfocus();
           FocusScope.of(context).requestFocus(_Password_focus_node);
         });
       },
@@ -408,6 +460,7 @@ class _Custom_TextFieldState extends State<Custom_TextField> {
       obscureText: _obscureText,
       obscuringCharacter: '*',
       controller: PasswordController,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value!.isEmpty) {
           return 'Password is required. Please Enter.';
@@ -417,13 +470,10 @@ class _Custom_TextFieldState extends State<Custom_TextField> {
         return null;
       },
       style: TextStyle(
-          fontFamily: 'SourceCodePro',
           fontSize: 16,
           color: Colors.blueGrey
       ),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-          alignLabelWithHint: true,
           labelText: "Password",
           hintText: "********",
           hintStyle: TextStyle(
@@ -434,11 +484,7 @@ class _Custom_TextFieldState extends State<Custom_TextField> {
             // color: _Password_focus_node.hasFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black54
             // color: Colors.grey
           ),
-          prefixIcon: Icon(
-            Icons.password_rounded,
-            size: 22,
-            // color: _Password_focus_node.hasFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black45
-          ),
+          prefixIcon: Icon(Icons.password_rounded,size: 22,color: _Password_focus_node.hasFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black45),
           suffixIcon: _Password_focus_node.hasFocus ? IconButton(
               splashRadius: 20,
               iconSize: 22,
@@ -456,8 +502,9 @@ class _Custom_TextFieldState extends State<Custom_TextField> {
               borderRadius: BorderRadius.circular(8),
               gapPadding: 4,
               borderSide: BorderSide(
-                width: 1,
-                style: BorderStyle.solid,
+                  width: 1,
+                  style: BorderStyle.solid,
+                  color: Colors.redAccent
               )
           ),
           focusedBorder: OutlineInputBorder(
