@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown
     ]);
     return MaterialApp(
-      title: APP_NAME,
+      title: "BSafe-24x7",
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         // "/settings": (context) => SettingsPage(),
         // "/task": (context) => Tasks_page(),
         // "/john_jack": (context) => Input_Bricks_Page(),
-        "/": (context) => RestaurantSplashPage(),
+        // "/": (context) => RestaurantSplashPage(),
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         // "/Restaurant_home": (context) => Restaurant.HomePage(),
