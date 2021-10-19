@@ -1,0 +1,1 @@
+final APP_NAME="BSafe-24x7";
