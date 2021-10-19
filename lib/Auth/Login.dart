@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       print("User ID is:"+userCredential.user!.uid.toString());
 
       if(userCredential.user!.uid.toString().isNotEmpty){
-        await get_data();
+        // await get_data();
         setState(() {
           loginIDController.text = "";
           PasswordController.text = "";

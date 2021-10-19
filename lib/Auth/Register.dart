@@ -41,59 +41,59 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  void RegisterUser(BuildContext context) async{
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance.verifyPhoneNumber(phoneNumber: phoneNumber, verificationCompleted: verificationCompleted, verificationFailed: verificationFailed, codeSent: codeSent, codeAutoRetrievalTimeout: codeAutoRetrievalTimeout)
-
-      print("userCredential = ${userCredential}");
-
-      print("User ID is:"+userCredential.user!.uid.toString());
-
-      if(userCredential.user!.uid.toString().isNotEmpty){
-        AppUser user = AppUser(uid:userCredential.user!.uid, name:NameController.text.trim(), email:loginIDController.text.trim(), Profile_pic: "", isAdmin: false, cart: {}, address: {}, Phone_no: '');
-        var dataToSave = user.toMap();
-        USERS_COLLECTION.doc(userCredential.user!.uid).set(dataToSave).then((value) {get_data();Navigator.pushReplacementNamed(context, "/Restaurant_home");});
-        Future.delayed(Duration(milliseconds: 500), (){
-          setState(() {
-            showLoader=false;
-            NameController.clear();
-            loginIDController.clear();
-            PasswordController.clear();
-            _FormKey.currentState!.reset();
-          });
-        });
-      }
-      else{
-        // Registration Failed
-        setState(() {
-          showLoader=false;
-        });
-      }
-
-
-    } on FirebaseAuthException catch (e) {
-
-      if (e.code == 'email-already-in-use') {
-        print('This email address "${loginIDController.text}" is already in use by another account');
-        setState(() {
-          showLoader=false;
-        });
-        Show_Snackbar(context: context,message: "Account already exist, Please Login!");
-      }
-      else if (e.code == 'error-invalid-email') {
-        print('Email is invalid');
-        setState(() {
-          showLoader=false;
-        });
-        Show_Snackbar(context: context,message: "Email is invalid");
-      }
-      else{
-        // print(e.message);
-        print('Failed with error code: ${e.code}');
-        Show_Snackbar(context: context,message: e.code.toString());
-      }
-    }
-  }
+  // void RegisterUser(BuildContext context) async{
+  //   try {
+  //     UserCredential userCredential = await FirebaseAuth.instance.verifyPhoneNumber(phoneNumber: phoneNumber, verificationCompleted: verificationCompleted, verificationFailed: verificationFailed, codeSent: codeSent, codeAutoRetrievalTimeout: codeAutoRetrievalTimeout)
+  //
+  //     print("userCredential = ${userCredential}");
+  //
+  //     print("User ID is:"+userCredential.user!.uid.toString());
+  //
+  //     if(userCredential.user!.uid.toString().isNotEmpty){
+  //       AppUser user = AppUser(uid:userCredential.user!.uid, name:NameController.text.trim(), email:loginIDController.text.trim(), Profile_pic: "", isAdmin: false, cart: {}, address: {}, Phone_no: '');
+  //       var dataToSave = user.toMap();
+  //       USERS_COLLECTION.doc(userCredential.user!.uid).set(dataToSave).then((value) {get_data();Navigator.pushReplacementNamed(context, "/Restaurant_home");});
+  //       Future.delayed(Duration(milliseconds: 500), (){
+  //         setState(() {
+  //           showLoader=false;
+  //           NameController.clear();
+  //           loginIDController.clear();
+  //           PasswordController.clear();
+  //           _FormKey.currentState!.reset();
+  //         });
+  //       });
+  //     }
+  //     else{
+  //       // Registration Failed
+  //       setState(() {
+  //         showLoader=false;
+  //       });
+  //     }
+  //
+  //
+  //   } on FirebaseAuthException catch (e) {
+  //
+  //     if (e.code == 'email-already-in-use') {
+  //       print('This email address "${loginIDController.text}" is already in use by another account');
+  //       setState(() {
+  //         showLoader=false;
+  //       });
+  //       Show_Snackbar(context: context,message: "Account already exist, Please Login!");
+  //     }
+  //     else if (e.code == 'error-invalid-email') {
+  //       print('Email is invalid');
+  //       setState(() {
+  //         showLoader=false;
+  //       });
+  //       Show_Snackbar(context: context,message: "Email is invalid");
+  //     }
+  //     else{
+  //       // print(e.message);
+  //       print('Failed with error code: ${e.code}');
+  //       Show_Snackbar(context: context,message: e.code.toString());
+  //     }
+  //   }
+  // }
 
 
 
@@ -332,7 +332,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       FocusScope.of(context).requestFocus(_Button_focus_node);
                                       if (_FormKey.currentState!.validate()) {
                                         showLoader = true;
-                                        RegisterUser(context);
+                                        // RegisterUser(context);
                                       }
                                     },
                                     enableFeedback: true,
