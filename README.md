@@ -14,7 +14,7 @@ Voice Help command Feature
 ### Login Page
 ### Signup Page
 
-
+</h>
 ### Home Page 
 App bar
 Add button to add emergency contacts
