@@ -32,17 +32,44 @@ class _SplashPageState extends State<SplashPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(child: Image.asset(Util.Logo),
-              height: 40,
-              width: 40,),
+            Image.asset(Util.Logo,width: 115,),
             SizedBox(height: 8,),
-            Divider(),
-            SizedBox(height: 4,),
-            Text("Ensuring Women Safety", style: TextStyle(color: Colors.grey, fontSize: 15)),
-
+            Text("BSafe-24x7",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 93, 143, 201),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold
+                )
+            ),
+            SizedBox(height: 6,),
+            Text("Ensuring Women Safety",
+                style: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold
+                )
+            ),
           ],
         ),
       ),
     );
+    // return Scaffold(
+    //   body: Center(
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       crossAxisAlignment: CrossAxisAlignment.center,
+    //       children: [
+    //         Container(child: Image.asset(Util.Logo),
+    //           height: 100,
+    //           width: 100,),
+    //         SizedBox(height: 8,),
+    //         Divider(),
+    //         SizedBox(height: 4,),
+    //         Text("Ensuring Women Safety", style: TextStyle(color: Colors.grey, fontSize: 15)),
+    //
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
