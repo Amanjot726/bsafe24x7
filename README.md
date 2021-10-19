@@ -15,17 +15,17 @@ Voice Help command Feature
 ### Signup Page
 
 ### Home Page 
-App bar
-Add button to add emergency contacts
-Tips for Women Safety
-Tips to escape Threat
-Videos for Self Defence
-Floating Button to track location
-Navigation Bar
+- App bar  
+- Add button to add emergency contacts  
+- Tips for Women Safety
+- Tips to escape Threat
+- Videos for Self Defence
+- Floating Button to track location
+- Navigation Bar
 
 ### General HealthCare Page
-First Aid
-Common Medicines 
+- First Aid
+- Common Medicines 
 ### Emergency contact add page
 
 ### Tips for Women Safety Page
