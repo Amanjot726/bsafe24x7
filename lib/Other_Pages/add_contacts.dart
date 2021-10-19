@@ -33,11 +33,12 @@ class _AddContactsPageState extends State<AddContactsPage> {
             Padding(
               padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
               child: ShaderMask(
+                blendMode: BlendMode.srcATop,
                 shaderCallback: (bounds) {
                   return RadialGradient(
                     center: Alignment.topLeft,
                     radius: 1.0,
-                    colors: <Color>[Colors.yellow, Colors.deepOrange.shade900],
+                    colors: <Color>[Color.fromARGB(255, 255, 96, 125), Colors.black38],
                     tileMode: TileMode.mirror,
                   ).createShader(bounds);
                 },
