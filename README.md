@@ -3,11 +3,11 @@
 App for Women Safety
 
 ## Women Safety App Features:
-Location Tracking: Location fetch and then store in the firebase database.
-Contact Linking for Alert Tone
-Automatic Front & Back Camera Feature
-Microphone Recording send to parents
-Voice Help command Feature
+- Location Tracking: Location fetch and then store in the firebase database.
+- Contact Linking for Alert Tone
+- Automatic Front & Back Camera Feature
+- Microphone Recording send to parents
+- Voice Help command Feature
 
 
 ## App Pages:
