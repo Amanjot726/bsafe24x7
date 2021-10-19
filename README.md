@@ -11,7 +11,6 @@ Voice Help command Feature
 
 
 ## App Pages:
-### Theme Color:
 ### Login Page
 ### Signup Page
 
