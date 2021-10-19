@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:bsafe24x7/Auth/Login.dart';
+import 'package:bsafe24x7/Auth/Signup.dart';
+
+import 'Util/Constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: APP_NAME,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,9 +31,37 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // theme: ThemeData.dark().copyWith(accentColor: Colors.green),
+      // theme: ThemeData.light().copyWith(accentColor: Colors.green),
+      debugShowCheckedModeBanner: false,
+      routes: {
+        // "/": (context) => SplashPage(),
+        // "/home": (context) => HomePage(),
+        // "/ad": (context) => Profile_UI(),
+        // "/settings": (context) => SettingsPage(),
+        // "/task": (context) => Tasks_page(),
+        // "/john_jack": (context) => Input_Bricks_Page(),
+        "/": (context) => RestaurantSplashPage(),
+        "/login": (context) => LoginPage(),
+        "/register": (context) => RegisterPage(),
+        // "/Restaurant_home": (context) => Restaurant.HomePage(),
+        // "/profile": (context) => User_Profile(),
+        // "/add_restaurant": (context) => Add_Restaurant_Page(),
+        // "/cart": (context) => Cart_Page(),
+        // "/Addresses": (context) => AddressPage(Option: 0,),
+        // "/fetch_location": (context) => FetchCurrentLocationPage(),
+        // "/Address_Google_Map": (context) => Find_Address_From_Map(),
+        // "/Manage_Delivery": (context) => ManageDeliveryPage(),
+        // "/Ack": (context) => Show_Acknowledgement(),
+        // "/Orders": (context) => Orders_Page(),
+        // "/Manage_profile": (context) => ManageProfilePage(),
+        // "/Help": (context) => HelpPage(),
+      },
+      initialRoute: "/",
+      // initialRoute: "/fetch_location",
+      // home: Tasks_page(),
     );
   }
 }
