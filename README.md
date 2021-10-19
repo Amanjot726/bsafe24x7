@@ -2,46 +2,15 @@
 
 App for Women Safety
 
-## Women Safety App Features:
-- Location Tracking: Location fetch and then store in the firebase database.
-- Contact Linking for Alert Tone
-- Automatic Front & Back Camera Feature
-- Microphone Recording send to parents
-- Voice Help command Feature
+## Getting Started
 
+This project is a starting point for a Flutter application.
 
-## App Pages:
-### Login Page
-### Signup Page
+A few resources to get you started if this is your first Flutter project:
 
-### Home Page 
-- App bar  
-- Add button to add emergency contacts  
-- Tips for Women Safety
-- Tips to escape Threat
-- Videos for Self Defence
-- Floating Button to track location
-- Navigation Bar
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-### General HealthCare Page
-- First Aid
-- Common Medicines 
-### Emergency contact add page
-
-### Tips for Women Safety Page
-### Tips to escape Threat Page
-### Floating Button to track location Page
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
