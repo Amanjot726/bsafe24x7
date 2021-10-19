@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         // "/settings": (context) => SettingsPage(),
         // "/task": (context) => Tasks_page(),
         // "/john_jack": (context) => Input_Bricks_Page(),
-        // "/": (context) => RestaurantSplashPage(),
+        "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         // "/Restaurant_home": (context) => Restaurant.HomePage(),
