@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void RegisterUser(BuildContext context) async{
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.
+      UserCredential userCredential = await FirebaseAuth.instance.verifyPhoneNumber(phoneNumber: phoneNumber, verificationCompleted: verificationCompleted, verificationFailed: verificationFailed, codeSent: codeSent, codeAutoRetrievalTimeout: codeAutoRetrievalTimeout)
 
       print("userCredential = ${userCredential}");
 
