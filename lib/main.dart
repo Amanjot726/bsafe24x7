@@ -1,11 +1,15 @@
+
 import 'package:bsafe24x7/Other_Pages/Profile_page.dart';
 import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
+import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
+import 'package:bsafe24x7/Other_Pages/escapeThreat.dart';
+import 'package:bsafe24x7/Other_Pages/healthcare_page.dart';
+import 'package:bsafe24x7/Other_Pages/helpline.dart';
+import 'package:bsafe24x7/Other_Pages/women_safety_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/Login.dart';
 import 'package:bsafe24x7/Auth/Register.dart';
-import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
-
 import 'Util/Constants.dart';
 
 void main() {
@@ -23,9 +27,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown
     ]);
     return MaterialApp(
-
       title: "BSafe-24x7",
-
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -44,22 +46,16 @@ class MyApp extends StatelessWidget {
       routes: {
 
          "/": (context) => SplashPage(),
-        // "/home": (context) => HomePage(),
-        // "/ad": (context) => Profile_UI(),
-        // "/settings": (context) => SettingsPage(),
-        // "/task": (context) => Tasks_page(),
-        // "/john_jack": (context) => Input_Bricks_Page(),
-        // "/": (context) => RestaurantSplashPage(),
         "/login": (context) => LoginPage(),
         "/profile": (context) => UserProfilePage()
-        //"/register": (context) => RegisterPage(),
+        "/register": (context) => RegisterPage(),
+        "/addContacts": (context) => AddContactsPage(),
+        "/helpline": (context) => HelplinePage(),
+        "/womensafety" : (context) => WomenSafetyPage(),
+        "/escapethreat" : (context) => EscapeThreatPage()
 
       },
       initialRoute: "/",
-      // initialRoute: "/fetch_location",
-      // home: Tasks_page(),
     );
   }
 }
-
-
