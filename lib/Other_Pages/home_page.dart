@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
             return const RadialGradient(
               center: Alignment.topLeft,
               radius: 1.0,
-              colors: <Color>[Color.fromARGB(255, 255, 96, 125), Colors.black38],
+              colors: <Color>[Color.fromARGB(255, 255, 96, 125), Color.fromARGB(255, 179, 26, 75)],
               tileMode: TileMode.mirror,
             ).createShader(bounds);
           },
@@ -33,46 +33,58 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
       ),
 
-      body: Column(
+      body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
-          SizedBox(height: 30,),
-          Container(
-            height: 260,
-            width: 260,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(150),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(69, 26, 26, 26),
-                    blurRadius: 6.0,
-                    spreadRadius: 3.0,
-                    offset: Offset(
-                      -0.0,
-                      1.0,
+          SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Tooltip(
+                message: "Danger!! ALERT Guardians",
+                verticalOffset: 140,
+                child: Container(
+                  height: 260,
+                  width: 260,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(150),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(69, 26, 26, 26),
+                          blurRadius: 6.0,
+                          spreadRadius: 3.0,
+                          offset: Offset(
+                            -0.0,
+                            1.0,
+                          ),
+                        ),
+                      ]
+                  ),
+                  child: Material(
+                    shape: CircleBorder(),
+                    // clipBehavior: Clip.hardEdge,
+                    color: Color.fromARGB(255, 246, 246, 246),
+                    child: InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 206, 206, 206),
+                      borderRadius: BorderRadius.circular(150),
+                      child: Padding(
+                        padding: const EdgeInsets.all(50),
+                        child: Image.asset('assets/danger2.png',
+                          fit: BoxFit.contain,
+                          height: 180,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/helpline');
+                      },
                     ),
                   ),
-                ]
-            ),
-            child: Material(
-              shape: CircleBorder(),
-              // clipBehavior: Clip.hardEdge,
-              color: Color.fromARGB(255, 246, 246, 246),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(150),
-                child: Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Image.asset('assets/danger2.png',
-                    fit: BoxFit.contain,
-                    height: 180,
-                  ),
                 ),
-                onTap: () {
-                  Navigator.pushNamed(context, '/helpline');
-                },
               ),
-            ),
+            ],
           ),
-          SizedBox(height: 80,),
+          SizedBox(height: 60,),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
@@ -80,6 +92,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 212, 212, 212),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: EdgeInsets.all(15),
@@ -119,6 +133,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 212, 212, 212),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: EdgeInsets.all(15),
@@ -159,6 +175,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 212, 212, 212),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: EdgeInsets.all(15),
@@ -205,6 +223,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 212, 212, 212),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: EdgeInsets.all(15),
@@ -245,6 +265,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 212, 212, 212),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: EdgeInsets.all(15),
@@ -285,6 +307,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     InkWell(
+                      splashColor: Color.fromARGB(64, 201, 201, 201),
+                      highlightColor: Color.fromARGB(65, 212, 212, 212),
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         padding: EdgeInsets.all(15),

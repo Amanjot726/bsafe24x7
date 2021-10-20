@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bsafe24x7/Other_Pages/Terms_and_conditions.dart';
 import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
 import 'package:bsafe24x7/Util/Constants.dart';
@@ -24,19 +23,29 @@ class _UserProfilePageState extends State<UserProfilePage> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 70),
-            CircleAvatar(
-              foregroundImage: AssetImage("assets/woman.png"),
-              radius: 80.0,
-              backgroundImage: NetworkImage("https://loading.io/icon/7xfhss"),
-              backgroundColor: Colors.black12,
+            SizedBox(height: 90),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Container(
+                height: 150,
+                width: 150,
+                padding: EdgeInsets.only(top: 22),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 234, 234, 234),
+                  borderRadius: BorderRadius.circular(100)
+                ),
+                child: Image.asset("assets/woman.png",
+                  height: 150,
+                ),
+              ),
             ),
 
-            SizedBox(height: 50),
-            Divider(indent: 20,
-              endIndent: 20,),
+            SizedBox(height: 80),
+
+            Divider(indent: 15, endIndent: 15,height: 0,),
+
             ListTile(
-              leading: Container(padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+              leading: Container(padding: EdgeInsets.fromLTRB(8, 8, 0, 0),
                   child: Icon(Icons.person)),
               title: Text(
                 "Manage Profile Settings",
@@ -46,10 +55,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
               onTap: () {},
             ),
 
+            Divider(indent: 15, endIndent: 15,height: 0,),
 
             ListTile(
               leading: Container(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0)
+                  padding: EdgeInsets.fromLTRB(8, 8, 0, 0)
                   ,child: Icon(Icons.add_alert)),
               title: Text(
                 "Manage Alert Settings",
@@ -58,11 +68,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
               trailing: Icon(Icons.keyboard_arrow_right_sharp),
               onTap: () {},
             ),
-            SizedBox(height: 10,),
+            // SizedBox(height: 10,),
+
+            Divider(indent: 15, endIndent: 15,height: 0,),
 
             ListTile(
               leading: Container(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  padding: EdgeInsets.fromLTRB(8, 8, 0, 0),
                   child: Icon(Icons.call)),
               title: Text(
                 "Manage Contacts",
@@ -75,11 +87,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
               },
             ),
 
-            SizedBox(height: 10,),
+            Divider(indent: 15, endIndent: 15,height: 0,),
+
             ListTile(
 
               leading: Container(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  padding: EdgeInsets.fromLTRB(8, 8, 0, 0),
                   child: Icon(Icons.message)),
               title: Text(
                 "Help",
@@ -89,11 +102,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
               onTap: () {},
             ),
 
-            SizedBox(height: 10,),
+            Divider(indent: 15, endIndent: 15,height: 0,),
+
             ListTile(
 
               leading: Container(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  padding: EdgeInsets.fromLTRB(8, 8, 0, 0),
                   child: Icon(Icons.document_scanner_outlined)),
               title: Text(
                 "Terms & Conditions",
@@ -106,18 +120,23 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 ));
               },
             ),
-            SizedBox(height: 20,),
+
+            Divider(indent: 15, endIndent: 15,height: 0,),
+
+            SizedBox(height: 25,),
 
             Container(
-              height: 35,
+              height: 38,
               width: 100,
               child: TextButton(
                 onPressed: () {},
-                child: Text('Log Out', style: TextStyle(color: Colors.white),),
+                child: Text('Log Out', style: TextStyle(color: Colors.white,fontSize: 16),),
                 style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(
-                      255, 255, 96, 125),
+                  backgroundColor: Color.fromARGB(255, 255, 96, 125),
                   elevation: 8,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  )
                 ),
               ),
             ),
