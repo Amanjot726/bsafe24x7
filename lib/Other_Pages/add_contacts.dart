@@ -46,7 +46,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
         },
         child: Column(
           children: [
-            Flexible(child: Image.asset('addContacts.png', height: 280,),),
+            Flexible(child: Image.asset('assets/addContacts.png', height: 280,),),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
