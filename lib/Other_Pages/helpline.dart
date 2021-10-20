@@ -1,4 +1,4 @@
-import 'package:bsafe24x7/Util/db_operations.dart';
+import 'package:bsafe24x7/Util/Db_operations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
