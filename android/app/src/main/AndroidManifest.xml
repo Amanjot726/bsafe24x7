@@ -2,7 +2,7 @@
     package="com.wecoders.bsafe24x7">
    <application
         android:label="bsafe24x7"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/bsafe">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
