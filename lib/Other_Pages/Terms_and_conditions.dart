@@ -4,16 +4,14 @@ import 'dart:async';
 import 'dart:io';
 
 
-class WomenSafetyPage extends StatefulWidget {
-  const WomenSafetyPage({Key? key}) : super(key: key);
+class TnCPage extends StatefulWidget {
+  const TnCPage({Key? key}) : super(key: key);
 
   @override
-  _WomenSafetyPageState createState() => _WomenSafetyPageState();
+  _TnCPageState createState() => _TnCPageState();
 }
 
-
-class _WomenSafetyPageState extends State<WomenSafetyPage> {
-
+class _TnCPageState extends State<TnCPage> {
   @override
   void initState() {
     super.initState();
@@ -38,7 +36,7 @@ class _WomenSafetyPageState extends State<WomenSafetyPage> {
     return Scaffold(
       body: SafeArea(
         child: WebView(
-          initialUrl: 'https://paladinsecurity.com/safety-tips/for-women/',
+          initialUrl: 'https://digital.kecrpg.com/raksha/PrivacyPolicy.html',
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
@@ -69,4 +67,3 @@ class _WomenSafetyPageState extends State<WomenSafetyPage> {
     );
   }
 }
-

@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
         "/profile": (context) => UserProfilePage(),
         "/addContacts": (context) => AddContactsPage(),
         "/helpline": (context) => HelplinePage(),
+        "/healthcare": (context) => HealthCarePage(),
         "/womensafety" : (context) => WomenSafetyPage(),
         "/escapethreat" : (context) => EscapeThreatPage(),
         "/homepage" : (context) => HomePage(),

@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, '/addContacts');
+                        Navigator.pushNamed(context, '/helpline');
                       },
                     ),
                     SizedBox(height: 5,),
@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, '/addContacts');
+                        Navigator.pushNamed(context, '/profile');
                       },
                     ),
                     SizedBox(height: 5,),
@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, '/addContacts');
+                        Navigator.pushNamed(context, '/healthcare');
                       },
                     ),
                     SizedBox(height: 5,),
@@ -262,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, '/addContacts');
+                        Navigator.pushNamed(context, '/womensafety');
                       },
                     ),
                     SizedBox(height: 5,),
@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, '/addContacts');
+                        Navigator.pushNamed(context, '/escapethreat');
                       },
                     ),
                     SizedBox(height: 5,),
