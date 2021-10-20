@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wecoders.bsafe24x7">
    <application
-        android:label="bsafe24x7"
+        android:label="BSafe24x7"
         android:icon="@drawable/bsafe">
         <activity
             android:name=".MainActivity"
