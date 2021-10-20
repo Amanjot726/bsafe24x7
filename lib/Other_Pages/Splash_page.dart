@@ -19,8 +19,8 @@ class _SplashPageState extends State<SplashPage> {
         Duration(seconds: 3),
             (){
           Navigator.push(context, MaterialPageRoute(
-              builder: (context) => LoginPage()
-              //builder: (context) => UserProfilePage()
+              //builder: (context) => LoginPage()
+              builder: (context) => UserProfilePage()
           ));
         }
     );
