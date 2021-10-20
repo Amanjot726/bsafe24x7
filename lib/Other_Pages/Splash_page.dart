@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
             SizedBox(height: 8,),
             Text("BSafe-24x7",
                 style: TextStyle(
-                    color: Color.fromARGB(255, 93, 143, 201),
+                    color: Util.color,
                     fontSize: 22,
                     fontWeight: FontWeight.bold
                 )
@@ -44,7 +44,7 @@ class _SplashPageState extends State<SplashPage> {
             SizedBox(height: 6,),
             Text("Ensuring Women Safety",
                 style: TextStyle(
-                    color: Colors.black26,
+                    color: Colors.black38,
                     fontSize: 15,
                     fontWeight: FontWeight.bold
                 )

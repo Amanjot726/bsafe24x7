@@ -116,8 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: <Color>[
-                              Color.fromARGB(205, 34, 170, 61),
-                              Color.fromARGB(69, 0, 208, 38),
+                              Util.color,
+                              Color.fromARGB(255, 245, 137, 157)
                             ],
                             tileMode: TileMode.clamp
                         )
@@ -130,8 +130,8 @@ class _LoginPageState extends State<LoginPage> {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: <Color>[
-                              Color.fromARGB(69, 0, 208, 38),
-                              Color.fromARGB(0, 0, 208, 38),
+                              Color.fromARGB(255, 245, 137, 157),
+                              Color.fromARGB(0, 234, 135, 155),
                             ],
                             tileMode: TileMode.clamp
                         )
@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text("Login",
                       style: TextStyle(
                         fontSize: 38,
-                        color: Color.fromARGB(243, 19, 127, 39),
+                        color: Color.fromARGB(255, 217, 37, 67),
                         fontFamily: 'Pacifico',
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold,
@@ -287,11 +287,11 @@ class _LoginPageState extends State<LoginPage> {
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(10),
                                               // color: Color.fromARGB(97, 32, 194, 53)
-                                              color: Color.fromARGB(107, 0, 208, 38),
+                                              color: Util.color,
                                               border: Border.all(color: Colors.black38),
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Color.fromARGB(97, 29, 144, 58),
+                                                  color: Color.fromARGB(96, 255, 96, 125),
                                                   blurRadius: 8.0,
                                                   spreadRadius: 3.0,
                                                 ),
@@ -340,7 +340,9 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Text(
                                     'New User? Register Here',
                                     style: TextStyle(
-                                      fontSize: 18.0, color: Colors.green, fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                      color: Color.fromARGB(255, 246, 76, 107),
+                                      fontWeight: FontWeight.w500,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
