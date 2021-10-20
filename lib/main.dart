@@ -1,3 +1,11 @@
+
+import 'package:bsafe24x7/Other_Pages/Profile_page.dart';
+import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
+import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
+import 'package:bsafe24x7/Other_Pages/escapeThreat.dart';
+import 'package:bsafe24x7/Other_Pages/healthcare_page.dart';
+import 'package:bsafe24x7/Other_Pages/helpline.dart';
+import 'package:bsafe24x7/Other_Pages/women_safety_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/login.dart';
@@ -32,45 +40,24 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: MaterialColor(0xFFF06292,{
-          50: Color.fromARGB(26, 255, 96, 125),
-          100: Color.fromARGB(51, 255, 96, 125),
-          200: Color.fromARGB(77, 255, 96, 125),
-          300: Color.fromARGB(102, 255, 96, 125),
-          400: Color.fromARGB(128, 255, 96, 125),
-          500: Color.fromARGB(153, 255, 96, 125),
-          600: Color.fromARGB(179, 255, 96, 125),
-          700: Color.fromARGB(204, 255, 96, 125),
-          800: Color.fromARGB(230, 255, 96, 125),
-          900: Color.fromARGB(255, 255, 96, 125),
-        }),
-          // Color.fromARGB(255, 255, 96, 125)
+        primarySwatch: Colors.green,
       ),
       // theme: ThemeData.dark().copyWith(accentColor: Colors.green),
       // theme: ThemeData.light().copyWith(accentColor: Colors.green),
       debugShowCheckedModeBanner: false,
       routes: {
-        // "/": (context) => SplashPage(),
-        // "/home": (context) => HomePage(),
-        // "/ad": (context) => Profile_UI(),
-        // "/settings": (context) => SettingsPage(),
-        // "/task": (context) => Tasks_page(),
-        // "/john_jack": (context) => Input_Bricks_Page(),
-        "/": (context) => SplashPage(),
+
+         "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
+        "/profile": (context) => UserProfilePage(),
+        "/register": (context) => RegisterPage(),
+        "/addContacts": (context) => AddContactsPage(),
+        "/helpline": (context) => HelplinePage(),
+        "/womensafety" : (context) => WomenSafetyPage(),
+        "/escapethreat" : (context) => EscapeThreatPage()
+
         "/verify": (context) => VerifyOTPPage(phone: "",),
-        // "/Restaurant_home": (context) => Restaurant.HomePage(),
-        // "/profile": (context) => User_Profile(),
-        // "/add_restaurant": (context) => Add_Restaurant_Page(),
-        // "/cart": (context) => Cart_Page(),
-        // "/Addresses": (context) => AddressPage(Option: 0,),
-        // "/fetch_location": (context) => FetchCurrentLocationPage(),
-        // "/Address_Google_Map": (context) => Find_Address_From_Map(),
-        // "/Manage_Delivery": (context) => ManageDeliveryPage(),
-        // "/Ack": (context) => Show_Acknowledgement(),
-        // "/Orders": (context) => Orders_Page(),
-        // "/Manage_profile": (context) => ManageProfilePage(),
-        // "/Help": (context) => HelpPage(),
+
       },
       initialRoute: "/",
       // initialRoute: "/fetch_location",

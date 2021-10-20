@@ -43,6 +43,8 @@ dev_dependencies:
   cloud_firestore: ^2.5.3
   firebase_storage: ^10.0.5
   firebase_core: ^1.7.0
+  lottie: ^1.2.1
+  webview_flutter: ^2.1.1
   pinput: ^1.2.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
