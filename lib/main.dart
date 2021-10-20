@@ -1,3 +1,6 @@
+
+import 'package:bsafe24x7/Other_Pages/Profile_page.dart';
+import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
 import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
 import 'package:bsafe24x7/Other_Pages/escapeThreat.dart';
 import 'package:bsafe24x7/Other_Pages/healthcare_page.dart';
@@ -7,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/Login.dart';
 import 'package:bsafe24x7/Auth/Register.dart';
-import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
-
 import 'Util/Constants.dart';
 
 void main() {
@@ -43,16 +44,16 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData.light().copyWith(accentColor: Colors.green),
       debugShowCheckedModeBanner: false,
       routes: {
-        // "/": (context) => HelplinePage(),
-        // "/": (context) => AddContactsPage(),
-        "/": (context) => EscapeThreatPage(),
-        // "/": (context) => SplashPage(),
+
+         "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
+        "/profile": (context) => UserProfilePage()
         "/register": (context) => RegisterPage(),
         "/addContacts": (context) => AddContactsPage(),
         "/helpline": (context) => HelplinePage(),
         "/womensafety" : (context) => WomenSafetyPage(),
         "/escapethreat" : (context) => EscapeThreatPage()
+
       },
       initialRoute: "/",
     );
