@@ -1,4 +1,5 @@
 import 'package:bsafe24x7/Auth/login.dart';
+import 'package:bsafe24x7/Other_Pages/Profile_page.dart';
 import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,9 @@ class _SplashPageState extends State<SplashPage> {
         Duration(seconds: 3),
             (){
           Navigator.push(context, MaterialPageRoute(
-              builder: (context) => LoginPage() ));
+              //builder: (context) => LoginPage()
+              builder: (context) => UserProfilePage()
+          ));
         }
     );
   }

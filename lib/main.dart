@@ -57,7 +57,6 @@ class MyApp extends StatelessWidget {
         "/helpline": (context) => HelplinePage(),
         "/womensafety" : (context) => WomenSafetyPage(),
         "/escapethreat" : (context) => EscapeThreatPage(),
-        "/homepage" : (context) => HomePage(),
         "/verify": (context) => VerifyOTPPage(phone: "",),
 
       },
