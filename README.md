@@ -11,17 +11,17 @@ first row
 
 
 
-second row
-first column
+second row  
+first column  
 ### Add Emergency Contacts
 
-second column
+second column  
 ### Helpline Numbers
 
 third column
 ### My Profile
 
-third row
+third row  
 first column
 ### General Health Care ( First Aid)
 
