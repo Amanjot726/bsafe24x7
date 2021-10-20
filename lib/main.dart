@@ -50,12 +50,11 @@ class MyApp extends StatelessWidget {
          "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
         "/profile": (context) => UserProfilePage(),
-        "/register": (context) => RegisterPage(),
+        //"/register": (context) => RegisterPage(),
         "/addContacts": (context) => AddContactsPage(),
         "/helpline": (context) => HelplinePage(),
         "/womensafety" : (context) => WomenSafetyPage(),
-        "/escapethreat" : (context) => EscapeThreatPage()
-
+        "/escapethreat" : (context) => EscapeThreatPage(),
         "/verify": (context) => VerifyOTPPage(phone: "",),
 
       },
