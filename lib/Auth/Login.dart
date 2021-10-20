@@ -139,7 +139,14 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(height: 8,),
+                                Text('Enter Phone Number',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Righteous',
+                                    color: Colors.pink[600]
+                                  ),
+                                ),
+                                SizedBox(height: 14,),
                                 TextFormField(
                                   onTap: (){
                                     setState(() {
@@ -203,9 +210,6 @@ class _LoginPageState extends State<LoginPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    progressIndicator==true?
-                                    CircularProgressIndicator()
-                                        :
                                     InkWell(
                                         focusNode: _Button_focus_node,
                                         borderRadius: BorderRadius.circular(10),
@@ -214,9 +218,7 @@ class _LoginPageState extends State<LoginPage> {
                                           _Phone_focus_node.unfocus();
                                           FocusScope.of(context).requestFocus(_Button_focus_node);
                                           if (_FormKey.currentState!.validate()) {
-                                            setState(() {
-                                              progressIndicator = true;
-                                            });
+
                                             // authenticateUser(context);
                                           }
                                         },
@@ -237,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 ),
                                               ]
                                           ),
-                                          child: Text("Verify",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.bold,fontSize: 15),),
+                                          child: Text("Send OTP",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.bold,fontSize: 15),),
                                         )
                                     ),
                                   ],
