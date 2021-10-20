@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 
-FocusNode _Email_focus_node = new FocusNode();
+FocusNode _Phone_focus_node = new FocusNode();
 FocusNode _Password_focus_node = new FocusNode();
 FocusNode _Button_focus_node = new FocusNode();
-TextEditingController loginIDController = new TextEditingController();
+TextEditingController PhoneController = new TextEditingController();
 TextEditingController PasswordController = new TextEditingController();
 bool progressIndicator = false;
 
@@ -35,10 +35,13 @@ class _LoginPageState extends State<LoginPage> {
 
   void authenticateUser(BuildContext context) async{
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: loginIDController.text.trim(),
-          password: PasswordController.text.trim()
-      );
+      UserCredential userCredential = await FirebaseAuth.instance.verifyPhoneNumber(
+          phoneNumber: phoneNumber,
+          verificationCompleted: verificationCompleted,
+          verificationFailed: verificationFailed,
+          codeSent: codeSent,
+          codeAutoRetrievalTimeout: codeAutoRetrievalTimeout
+      )
 
       print("User ID is:"+userCredential.user!.uid.toString());
 
@@ -214,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                                   enabled: true,
                                   autofocus: false,
                                   keyboardType: TextInputType.emailAddress,
-                                  cursorColor: Colors.green,
+                                  cursorColor: Color.fromARGB(255, 245, 81, 111),
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Login ID is required. Please Enter.';
@@ -241,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                                           color: Colors.grey
                                       ),
                                       isDense: true,
-                                      prefixIcon: Icon(Icons.email,size: 22,color: _Email_focus_node.hasFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black45),
+                                      prefixIcon: Icon(Icons.email,size: 22,color: _Email_focus_node.hasFocus ? Color.fromARGB(255, 255, 96, 125) : Colors.black45),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
                                         gapPadding: 4,
@@ -249,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(8),
                                           borderSide: BorderSide(
-                                              color: Color.fromARGB(235, 60, 191, 84),
+                                              color: Color.fromARGB(255, 255, 96, 125),
                                               width: 1.5
                                           )
                                       )
@@ -463,7 +466,7 @@ class _Custom_TextFieldState extends State<Custom_TextField> {
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                  color: Color.fromARGB(235, 60, 191, 84),
+                  color: Color.fromARGB(255, 255, 96, 125),
                   width: 1.5
               )
           )
