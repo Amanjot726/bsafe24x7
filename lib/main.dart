@@ -15,7 +15,9 @@ import 'package:bsafe24x7/Auth/Login.dart';
 
 import 'Util/Constants.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
