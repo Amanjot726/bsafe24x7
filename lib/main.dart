@@ -1,4 +1,5 @@
 import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
+import 'package:bsafe24x7/Other_Pages/healthcare_page.dart';
 import 'package:bsafe24x7/Other_Pages/helpline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
       routes: {
         // "/": (context) => HelplinePage(),
         // "/": (context) => AddContactsPage(),
-        "/": (context) => SplashPage(),
+        "/": (context) => HealthCarePage(),
+        // "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         "/addContacts": (context) => AddContactsPage(),

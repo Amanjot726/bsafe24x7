@@ -44,6 +44,7 @@ dev_dependencies:
   firebase_storage: ^10.0.5
   firebase_core: ^1.7.0
   lottie: ^1.2.1
+  webview_flutter: ^2.1.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
