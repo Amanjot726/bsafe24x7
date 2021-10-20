@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:bsafe24x7/Other_Pages/Terms_and_conditions.dart';
+
 import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
+
 import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,6 +26,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       body: Center(
         child: Column(
           children: [
+
             SizedBox(height: 70),
             CircleAvatar(foregroundImage: AssetImage("woman.png"),
                 radius: 80.0,
@@ -32,6 +35,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
 
             SizedBox(height: 50),
+
             Divider(indent: 20,
             endIndent: 20,),
             ListTile(
@@ -88,12 +92,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 onTap: () {},
               ),
 
+
             SizedBox(height: 10,),
              ListTile(
 
                 leading: Container(
                     padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
                     child: Icon(Icons.document_scanner_outlined)),
+
                 title: Text(
                   "Terms & Conditions",
                 ),
@@ -105,6 +111,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ));
                 },
               ),
+
             SizedBox(height: 10,),
 
         Container(
@@ -120,6 +127,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             ),
           ),
         ),
+
           ],
         ),
       ),

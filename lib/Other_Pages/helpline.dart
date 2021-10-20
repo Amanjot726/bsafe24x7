@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bsafe24x7/Util/Db_operations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -25,11 +26,11 @@ class _HelplinePageState extends State<HelplinePage> {
         onTap: (){
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: Column(
+        child: ListView(
           children: [
             Flexible(child: Lottie.asset('assets/helpline.json'),),
             Padding(
-              padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
+              padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.2),
               child: ShaderMask(
                 blendMode: BlendMode.srcATop,
                 shaderCallback: (bounds) {
@@ -46,54 +47,67 @@ class _HelplinePageState extends State<HelplinePage> {
 
           const SizedBox(height: 30,),
 
-          Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  launch('tel://123');
-                },
-                child: Container(
-                  height: 135,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [BoxShadow(
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                      color: Colors.grey.shade100,
-                    )],
-                  ),
-                  margin: EdgeInsets.all(15),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 80,
-                        margin: const EdgeInsets.only(right: 5, top: 5, left: 10, bottom: 5),
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        // child: FadeInImage.assetNetwork(
-                        //
-                        // ),
-                        // Image From database
+          StreamBuilder(
+            stream: fetchHelplineNumbers(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if(snapshot.hasError){
+                return Center(
+                  child: Text("Something Went Wrong", style: TextStyle(color: Colors.red),),
+                );
+              }
+              if(snapshot.connectionState == ConnectionState.waiting){
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return Column(
+                children: snapshot.data.docs.map<Widget>((DocumentSnapshot document){
+                  Map<String, dynamic> map = document.data() as Map<String, dynamic>;
+
+                  return InkWell(
+                    onTap: (){
+                      launch('tel://123');
+                    },
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [BoxShadow(
+                          spreadRadius: 5,
+                          blurRadius: 5,
+                          color: Colors.grey.shade100,
+                        )],
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 5, left: 2.5, right: 5, top: 5),
-                        padding: EdgeInsets.only(bottom: 5, left: MediaQuery.of(context).size.width*0.2, right: 5, top: 5),
-                        child: const Text("Ambulance", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                      margin: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 5),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 80,
+                            margin: const EdgeInsets.only(right: 5, top: 5, left: 10, bottom: 5),
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade200,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Image.network(map['image']),
+                            // Image From database
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 5, left: 2.5, right: 5, top: 5),
+                            padding: EdgeInsets.only(bottom: 5, left: MediaQuery.of(context).size.width*0.2, right: 5, top: 5),
+                            child: Text(map['name'].toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-            ],
-          ),
+                    ),
+                  );
+
+                }).toList(),
+              );
+            },
+          )
 
           ],
         ),
