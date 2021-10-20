@@ -1,6 +1,5 @@
 
 import 'package:bsafe24x7/Other_Pages/Profile_page.dart';
-import 'package:bsafe24x7/Other_Pages/splash_page.dart';
 import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
 import 'package:bsafe24x7/Other_Pages/escapeThreat.dart';
 import 'package:bsafe24x7/Other_Pages/healthcare_page.dart';
@@ -10,8 +9,8 @@ import 'package:bsafe24x7/Other_Pages/women_safety_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/verify_phone.dart';
-import 'package:bsafe24x7/Other_Pages/splash_page.dart';
-import 'package:bsafe24x7/Auth/Login.dart';
+import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
+import 'package:bsafe24x7/Auth/login.dart';
 
 import 'Util/Constants.dart';
 
