@@ -1,25 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:bsafe24x7/Auth/verify_phone.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:first_app/Model/user.dart';
-import 'package:bsafe24x7/util/constants.dart';
+import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 
 
 FocusNode _Phone_focus_node = new FocusNode();
 FocusNode _Button_focus_node = new FocusNode();
 TextEditingController PhoneController = new TextEditingController();
-bool progressIndicator = false;
-
-TextEditingController NameController = new TextEditingController();
-TextEditingController loginIDController = new TextEditingController();
-TextEditingController PasswordController = new TextEditingController();
-
-final _FormKey = GlobalKey<FormState>();
-
-bool showLoader = false;
-
 
 class Show_Snackbar{
   String message;
@@ -33,14 +23,16 @@ class Show_Snackbar{
   }
 }
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
 
+  final _FormKey = GlobalKey<FormState>();
 
 
   @override
@@ -147,19 +139,30 @@ class _RegisterPageState extends State<RegisterPage> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(height: 8,),
+                                Text('Enter Phone Number',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Righteous',
+                                    color: Colors.pink[600]
+                                  ),
+                                ),
+                                SizedBox(height: 14,),
                                 TextFormField(
                                   onTap: (){
                                     setState(() {
                                       FocusScope.of(context).requestFocus(_Phone_focus_node);
                                     });
                                   },
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.deny("-"),
+                                    FilteringTextInputFormatter.deny(","),
+                                  ],
                                   focusNode: _Phone_focus_node,
                                   controller: PhoneController,
                                   autovalidateMode: AutovalidateMode.onUserInteraction,
                                   enabled: true,
                                   autofocus: false,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.phone,
                                   cursorColor: Color.fromARGB(255, 245, 81, 111),
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -187,7 +190,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           color: Colors.grey
                                       ),
                                       isDense: true,
-                                      prefixIcon: Icon(Icons.email,size: 22,color: _Phone_focus_node.hasFocus ? Color.fromARGB(255, 255, 96, 125) : Colors.black45),
+                                      prefixIcon: Icon(Icons.phone,size: 22,color: _Phone_focus_node.hasFocus ? Color.fromARGB(255, 255, 96, 125) : Colors.black45),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
                                         gapPadding: 4,
@@ -206,9 +209,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    progressIndicator==true?
-                                    CircularProgressIndicator()
-                                        :
                                     InkWell(
                                         focusNode: _Button_focus_node,
                                         borderRadius: BorderRadius.circular(10),
@@ -217,9 +217,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           _Phone_focus_node.unfocus();
                                           FocusScope.of(context).requestFocus(_Button_focus_node);
                                           if (_FormKey.currentState!.validate()) {
-                                            setState(() {
-                                              progressIndicator = true;
-                                            });
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => VerifyOTPPage(phone: PhoneController.text)));
                                             // authenticateUser(context);
                                           }
                                         },
@@ -240,11 +238,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 ),
                                               ]
                                           ),
-                                          child: Text("Verify",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.bold,fontSize: 15),),
+                                          child: Text("Send OTP",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.bold,fontSize: 15),),
                                         )
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 4,),
                               ],
                             ),
                           ),

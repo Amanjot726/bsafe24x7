@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:bsafe24x7/Auth/Login.dart';
-import 'package:bsafe24x7/Auth/Verify_Phone.dart';
+import 'package:bsafe24x7/Auth/login.dart';
+import 'package:bsafe24x7/Auth/verify_phone.dart';
 import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
 
 import 'Util/Constants.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         // "/john_jack": (context) => Input_Bricks_Page(),
         "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
-        "/register": (context) => RegisterPage(),
+        "/verify": (context) => VerifyOTPPage(phone: "",),
         // "/Restaurant_home": (context) => Restaurant.HomePage(),
         // "/profile": (context) => User_Profile(),
         // "/add_restaurant": (context) => Add_Restaurant_Page(),

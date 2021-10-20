@@ -1,15 +1,36 @@
+import 'package:bsafe24x7/Auth/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:bsafe24x7/Util/Constants.dart';
+// import 'package:first_app/Model/user.dart';
+import 'package:bsafe24x7/util/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
+import 'package:pinput/pin_put/pin_put.dart';
 
 
-FocusNode _Phone_focus_node = new FocusNode();
 FocusNode _Button_focus_node = new FocusNode();
-TextEditingController PhoneController = new TextEditingController();
+String? _verificationCode;
+final TextEditingController _pinPutController = TextEditingController();
+final FocusNode _pinPutFocusNode = FocusNode();
+final BoxDecoration pinPutDecoration = BoxDecoration(
+  color: const Color.fromARGB(96, 248, 79, 111),
+  borderRadius: BorderRadius.circular(10.0),
+  border: Border.all(
+    color: const Color.fromRGBO(45, 49, 50, 0.42745098039215684),
+  ),
+);
 bool progressIndicator = false;
+
+TextEditingController NameController = new TextEditingController();
+TextEditingController loginIDController = new TextEditingController();
+TextEditingController PasswordController = new TextEditingController();
+
+final _FormKey = GlobalKey<FormState>();
+
+bool showLoader = false;
+
 
 class Show_Snackbar{
   String message;
@@ -23,24 +44,56 @@ class Show_Snackbar{
   }
 }
 
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class VerifyOTPPage extends StatefulWidget {
+  final String phone;
+  const VerifyOTPPage({Key? key,required this.phone}) : super(key: key);
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _VerifyOTPPageState createState() => _VerifyOTPPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _VerifyOTPPageState extends State<VerifyOTPPage> {
 
-  final _FormKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _verifyPhone();
+  }
 
+  _verifyPhone() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+1${widget.phone}',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance
+              .signInWithCredential(credential)
+              .then((value) async {
+            if (value.user != null) {
+              Navigator.pushAndRemoveUntil(
+                  context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
+            }
+          });
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print(e.message);
+        },
+        codeSent: (String verficationID, int? resendToken) {
+          setState(() {
+            _verificationCode = verficationID;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationID) {
+          setState(() {
+            _verificationCode = verificationID;
+          });
+        },
+        timeout: Duration(seconds: 120));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: GestureDetector(
           onTap: (){
-            _Phone_focus_node.unfocus();
             _Button_focus_node.unfocus();
             FocusScope.of(context).requestFocus(new FocusNode());
           },
@@ -139,72 +192,43 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Enter Phone Number',
+                                Text('Enter OTP',
                                   style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: 'Righteous',
-                                    color: Colors.pink[600]
+                                      fontSize: 20,
+                                      fontFamily: 'Righteous',
+                                      color: Colors.pink[600]
                                   ),
                                 ),
                                 SizedBox(height: 14,),
-                                TextFormField(
-                                  onTap: (){
-                                    setState(() {
-                                      FocusScope.of(context).requestFocus(_Phone_focus_node);
-                                    });
-                                  },
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.deny("-"),
-                                    FilteringTextInputFormatter.deny(" "),
-                                    FilteringTextInputFormatter.deny(","),
-                                  ],
-                                  focusNode: _Phone_focus_node,
-                                  controller: PhoneController,
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                                  enabled: true,
-                                  autofocus: false,
-                                  keyboardType: TextInputType.phone,
-                                  cursorColor: Color.fromARGB(255, 245, 81, 111),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Phone is required. Please Enter.';
-                                    } else if (value.trim().length == 0) {
-                                      return 'Phone is required. Please Enter.';
+                                PinPut(
+                                  fieldsCount: 6,
+                                  textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
+                                  eachFieldWidth: 40.0,
+                                  eachFieldHeight: 45.0,
+                                  focusNode: _pinPutFocusNode,
+                                  controller: _pinPutController,
+                                  submittedFieldDecoration: pinPutDecoration,
+                                  selectedFieldDecoration: pinPutDecoration,
+                                  followingFieldDecoration: pinPutDecoration,
+                                  pinAnimationType: PinAnimationType.fade,
+                                  onSubmit: (pin) async {
+                                    try {
+                                      await FirebaseAuth.instance
+                                          .signInWithCredential(PhoneAuthProvider.credential(
+                                          verificationId: _verificationCode!, smsCode: pin))
+                                          .then((value) async {
+                                        if (value.user != null) {
+                                          // Navigator.pushAndRemoveUntil(
+                                          //     context,
+                                          //     MaterialPageRoute(builder: (context) => Home()),
+                                          //         (route) => false);
+                                        }
+                                      });
+                                    } catch (e) {
+                                      FocusScope.of(context).unfocus();
+                                      Show_Snackbar(context: context,message: "Invalid Otp");
                                     }
-                                    return null;
                                   },
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.blueGrey
-                                  ),
-                                  decoration: InputDecoration(
-                                    // filled: true,
-                                    // alignLabelWithHint: true,
-                                      labelText: "Phone",
-                                      labelStyle: TextStyle(
-                                        fontWeight: _Phone_focus_node.hasFocus ? FontWeight.bold : FontWeight.normal,
-                                        // color: _Email_focus_node.hasFocus ? Color.fromARGB(243, 93, 177, 108) : Colors.black54
-                                        // color: Colors.grey
-                                      ),
-                                      hintText: '8426736886',
-                                      hintStyle: TextStyle(
-                                          color: Colors.grey
-                                      ),
-                                      isDense: true,
-                                      prefixIcon: Icon(Icons.phone,size: 22,color: _Phone_focus_node.hasFocus ? Color.fromARGB(255, 255, 96, 125) : Colors.black45),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        gapPadding: 4,
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                          borderSide: BorderSide(
-                                              color: Color.fromARGB(255, 255, 96, 125),
-                                              width: 1.5
-                                          )
-                                      )
-                                  ),
-
                                 ),
                                 SizedBox(height: 20,),
                                 Row(
@@ -215,10 +239,9 @@ class _LoginPageState extends State<LoginPage> {
                                         borderRadius: BorderRadius.circular(10),
                                         onTap: (){
                                           // Show_Snackbar(context: context, message: "Height = "+MediaQuery.of(context).size.height.toString());
-                                          _Phone_focus_node.unfocus();
                                           FocusScope.of(context).requestFocus(_Button_focus_node);
                                           if (_FormKey.currentState!.validate()) {
-
+                                            Navigator.pushNamed(context, "/verify");
                                             // authenticateUser(context);
                                           }
                                         },
@@ -244,6 +267,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 4,),
                               ],
                             ),
                           ),
