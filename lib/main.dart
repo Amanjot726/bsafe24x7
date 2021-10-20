@@ -1,6 +1,8 @@
 import 'package:bsafe24x7/Other_Pages/add_contacts.dart';
+import 'package:bsafe24x7/Other_Pages/escapeThreat.dart';
 import 'package:bsafe24x7/Other_Pages/healthcare_page.dart';
 import 'package:bsafe24x7/Other_Pages/helpline.dart';
+import 'package:bsafe24x7/Other_Pages/women_safety_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/Login.dart';
@@ -43,12 +45,14 @@ class MyApp extends StatelessWidget {
       routes: {
         // "/": (context) => HelplinePage(),
         // "/": (context) => AddContactsPage(),
-        "/": (context) => HealthCarePage(),
+        "/": (context) => EscapeThreatPage(),
         // "/": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         "/addContacts": (context) => AddContactsPage(),
         "/helpline": (context) => HelplinePage(),
+        "/womensafety" : (context) => WomenSafetyPage(),
+        "/escapethreat" : (context) => EscapeThreatPage()
       },
       initialRoute: "/",
     );
