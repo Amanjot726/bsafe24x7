@@ -3,6 +3,7 @@ import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 
 
 FocusNode _Phone_focus_node = new FocusNode();
@@ -145,12 +146,17 @@ class _LoginPageState extends State<LoginPage> {
                                       FocusScope.of(context).requestFocus(_Phone_focus_node);
                                     });
                                   },
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.deny("-"),
+                                    FilteringTextInputFormatter.deny(" "),
+                                    FilteringTextInputFormatter.deny(","),
+                                  ],
                                   focusNode: _Phone_focus_node,
                                   controller: PhoneController,
                                   autovalidateMode: AutovalidateMode.onUserInteraction,
                                   enabled: true,
                                   autofocus: false,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.phone,
                                   cursorColor: Color.fromARGB(255, 245, 81, 111),
                                   validator: (value) {
                                     if (value!.isEmpty) {
@@ -178,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                                           color: Colors.grey
                                       ),
                                       isDense: true,
-                                      prefixIcon: Icon(Icons.email,size: 22,color: _Phone_focus_node.hasFocus ? Color.fromARGB(255, 255, 96, 125) : Colors.black45),
+                                      prefixIcon: Icon(Icons.phone,size: 22,color: _Phone_focus_node.hasFocus ? Color.fromARGB(255, 255, 96, 125) : Colors.black45),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
                                         gapPadding: 4,
