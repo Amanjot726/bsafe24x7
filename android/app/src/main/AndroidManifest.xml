@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wecoders.bsafe24x7">
    <application
-        android:label="bsafe24x7"
-        android:icon="@mipmap/ic_launcher">
+        android:label="BSafe24x7"
+        android:icon="@drawable/bsafe">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
