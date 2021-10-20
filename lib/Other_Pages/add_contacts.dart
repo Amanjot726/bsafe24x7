@@ -1,3 +1,4 @@
+import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -20,15 +21,70 @@ class _AddContactsPageState extends State<AddContactsPage> {
     double height = MediaQuery.of(context).size.height;
 // top: height * 0.45,
     return Scaffold(
+      appBar: AppBar(
+        title: ShaderMask(
+          blendMode: BlendMode.srcATop,
+          shaderCallback: (bounds) {
+            return const RadialGradient(
+              center: Alignment.topLeft,
+              radius: 1.0,
+              colors: <Color>[Color.fromARGB(255, 255, 96, 125), Colors.black38],
+              tileMode: TileMode.mirror,
+            ).createShader(bounds);
+          },
+          child: Text(
+            "BSafe-24x7",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        // centerTitle: true,
+        backgroundColor: Colors.pink.shade100,
+      ),
       body: GestureDetector(
         onTap: (){
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Column(
           children: [
-            Flexible(child: Image.asset('addContacts.png', height: 350,),),
+            Flexible(child: Image.asset('assets/addContacts.png', height: 280,),),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(2.5),
+                    height: 200,
+                    width: MediaQuery.of(context).size.width/2,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 96, 125),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(2.5),
+                    height: 200,
+                    width: MediaQuery.of(context).size.width/2,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(133, 255, 96, 125),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(2.5),
+                    height: 200,
+                    // color: Colors.pinkAccent,
+                    width: MediaQuery.of(context).size.width/2,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 255, 96, 125),
+
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
-              height: 15,
+              height: 20,
             ),
             Padding(
               padding: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
@@ -85,7 +141,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(
-                          color: Colors.deepPurple,
+                          color: Color.fromARGB(255, 255, 96, 125),
                         ),
                       ),
                       errorBorder: OutlineInputBorder(
@@ -132,7 +188,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide(
-                          color: Colors.deepPurple,
+                          color: Color.fromARGB(255, 255, 96, 125),
                         ),
                       ),
                       errorBorder: OutlineInputBorder(

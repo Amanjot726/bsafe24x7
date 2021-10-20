@@ -2,15 +2,32 @@
 
 App for Women Safety
 
-## Getting Started
+## Home Page
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+first row
+## Emergency Contact Page
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+second row  
+first column  
+### Add Emergency Contacts
+
+second column  
+### Helpline Numbers
+
+third column
+### My Profile
+
+third row  
+first column
+### General Health Care ( First Aid)
+
+second column
+### Tips for Women Safety
+
+third column
+### Tips to escape Threat
+
