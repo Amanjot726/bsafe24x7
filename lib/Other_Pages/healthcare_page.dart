@@ -1,3 +1,4 @@
+import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -36,6 +37,25 @@ class _HealthCarePageState extends State<HealthCarePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: ShaderMask(
+          blendMode: BlendMode.srcATop,
+          shaderCallback: (bounds) {
+            return const RadialGradient(
+              center: Alignment.topLeft,
+              radius: 1.0,
+              colors: <Color>[Color.fromARGB(255, 255, 96, 125), Colors.black38],
+              tileMode: TileMode.mirror,
+            ).createShader(bounds);
+          },
+          child: Text(
+            Util.APP_NAME,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        // centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
       body: WebView(
         initialUrl: 'https://www.womenshealthmag.com/',
         javascriptMode: JavascriptMode.unrestricted,
