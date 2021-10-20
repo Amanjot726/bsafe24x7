@@ -1,3 +1,4 @@
+import 'package:bsafe24x7/Other_Pages/Profile_page.dart';
 import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
 
-        // "/": (context) => SplashPage(),
+         "/": (context) => SplashPage(),
         // "/home": (context) => HomePage(),
         // "/ad": (context) => Profile_UI(),
         // "/settings": (context) => SettingsPage(),
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         // "/john_jack": (context) => Input_Bricks_Page(),
         // "/": (context) => RestaurantSplashPage(),
         "/login": (context) => LoginPage(),
+        "/profile": (context) => UserProfilePage()
         //"/register": (context) => RegisterPage(),
 
       },
