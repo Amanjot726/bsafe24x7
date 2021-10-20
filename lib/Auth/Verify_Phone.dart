@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:bsafe24x7/Util/Constants.dart';
+// import 'package:first_app/Model/user.dart';
+import 'package:bsafe24x7/util/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -9,6 +11,15 @@ FocusNode _Phone_focus_node = new FocusNode();
 FocusNode _Button_focus_node = new FocusNode();
 TextEditingController PhoneController = new TextEditingController();
 bool progressIndicator = false;
+
+TextEditingController NameController = new TextEditingController();
+TextEditingController loginIDController = new TextEditingController();
+TextEditingController PasswordController = new TextEditingController();
+
+final _FormKey = GlobalKey<FormState>();
+
+bool showLoader = false;
+
 
 class Show_Snackbar{
   String message;
@@ -22,16 +33,14 @@ class Show_Snackbar{
   }
 }
 
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
-  final _FormKey = GlobalKey<FormState>();
 
 
   @override

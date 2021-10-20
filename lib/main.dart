@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bsafe24x7/Auth/Login.dart';
-import 'package:bsafe24x7/Auth/Register.dart';
+import 'package:bsafe24x7/Auth/Verify_Phone.dart';
 import 'package:bsafe24x7/Other_Pages/Splash_page.dart';
 
 import 'Util/Constants.dart';
