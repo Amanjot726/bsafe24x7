@@ -8,6 +8,7 @@ class Util {
   static String HELPLINE_COLLECTION = "helpline";
   static String USER_COLLECTION = 'users';
   static String GUARDIANS_COLLECTION = 'guardians';
+  static String uid = 'SnQV4CwP0xlcRmmfbAVk';
   // static Color color = Color.fromARGB(255, 255, 148, 168);
 
 }

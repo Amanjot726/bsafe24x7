@@ -1,6 +1,8 @@
 import 'package:bsafe24x7/Util/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'image_picker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +12,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  Map imageUploaded = {
+    'imageURL' : '',
+    'imageName' : 'Select to Upload Image',
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +37,28 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              imageUploaded = await Navigator.push(context, MaterialPageRoute(
+                builder: (context) =>
+                    ImagePickerPage(
+                      folderName: Util.USER_COLLECTION,
+                      imageName: DateTime.now().toString(),
+                    ),
+              ));
+              FirebaseFirestore.instance
+                  .collection(Util.USER_COLLECTION)
+                  .doc(Util.uid).collection("databaseOfUser").doc("images")
+                  .set({'images':[]},SetOptions(merge: true));
+              FirebaseFirestore.instance
+                  .collection(Util.USER_COLLECTION)
+                  .doc(Util.uid).collection("databaseOfUser").doc("images")
+                  .set({'images':[imageUploaded['imageURL']]},SetOptions(merge: true));
+            },
+            icon: Icon(Icons.upload_rounded),
+          ),
+        ],
         // centerTitle: true,
         backgroundColor: Colors.white,
       ),
